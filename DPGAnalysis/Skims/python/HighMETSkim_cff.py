@@ -61,7 +61,7 @@ tcMETSelSeq = cms.Sequence(
 ## select events with high MET dependent on PF and Calo MET Conditions
 CondMETSelector = cms.EDProducer(
    "CandViewShallowCloneCombiner",
-   decay = cms.string("pfMet caloMet"),
+   decay = cms.string("pfMet caloMetM"),
    cut = cms.string(" (daughter(0).pt > 200) || (daughter(0).pt/daughter(1).pt > 2 && daughter(1).pt > 150 ) || (daughter(1).pt/daughter(0).pt > 2 && daughter(0).pt > 150 )  " )
    )
 
