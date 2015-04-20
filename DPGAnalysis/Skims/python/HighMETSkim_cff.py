@@ -11,8 +11,8 @@ pvFilter = cms.EDFilter(
 
 
 ## apply HBHE Noise filter
-import CommonTools.RecoAlgos.HBHENoiseFilter_cfi
-HBHENoiseFilter = CommonTools.RecoAlgos.HBHENoiseFilter_cfi.HBHENoiseFilter.clone()
+## import CommonTools.RecoAlgos.HBHENoiseFilter_cfi
+## HBHENoiseFilter = CommonTools.RecoAlgos.HBHENoiseFilter_cfi.HBHENoiseFilter.clone()
 
 
 ## select events with high pfMET
@@ -30,31 +30,31 @@ pfMETCounter = cms.EDFilter(
 
 pfMETSelSeq = cms.Sequence(
 			   pvFilter*
-                           HBHENoiseFilter*
+                           ##HBHENoiseFilter*
                            pfMETSelector*
                            pfMETCounter
                            )
 
 
 
-## select events with high tcMET
-tcMETSelector = cms.EDFilter(
+## select events with high caloMET
+caloMETSelector = cms.EDFilter(
     "CandViewSelector",
-    src = cms.InputTag("tcMet"),
+    src = cms.InputTag("caloMetM"),
     cut = cms.string( "pt()>200" )
     )
 
-tcMETCounter = cms.EDFilter(
+caloMETCounter = cms.EDFilter(
     "CandViewCountFilter",
-    src = cms.InputTag("tcMETSelector"),
+    src = cms.InputTag("caloMETSelector"),
     minNumber = cms.uint32(1),
     )
 
-tcMETSelSeq = cms.Sequence(
+caloMETSelSeq = cms.Sequence(
 			   pvFilter*
-                           HBHENoiseFilter*
-                           tcMETSelector*
-                           tcMETCounter
+                           ##HBHENoiseFilter*
+                           caloMETSelector*
+                           caloMETCounter
                            )
 
 
@@ -73,7 +73,7 @@ CondMETCounter = cms.EDFilter(
 
 CondMETSelSeq = cms.Sequence(
                            pvFilter*
-                           HBHENoiseFilter*
+                           ##HBHENoiseFilter*
                            CondMETSelector*
                            CondMETCounter
                            )
@@ -94,7 +94,7 @@ miniMETCounter = cms.EDFilter(
     )
 
 miniMETSelSeq = cms.Sequence(
-                           HBHENoiseFilter*
+                           ##HBHENoiseFilter*
                            miniMETSelector*
                            miniMETCounter
                            )
